@@ -1,5 +1,6 @@
 package tinybinlabs.com.tipcalculator.model
 
+import android.util.Log
 import java.math.RoundingMode
 
 class RestaurantCalculator {
@@ -10,6 +11,7 @@ class RestaurantCalculator {
                 .toDouble()
 
         val grandTotal = checkInput + tipAmount
+        Log.d("Total amount: ", grandTotal.toString())
         return TipCalculation(
                 checkInput,
                 tipPctInput,
