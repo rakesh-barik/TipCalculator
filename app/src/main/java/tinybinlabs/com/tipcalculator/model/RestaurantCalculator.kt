@@ -13,8 +13,8 @@ class RestaurantCalculator {
         val grandTotal = checkInput + tipAmount
         Log.d("Total amount: ", grandTotal.toString())
         return TipCalculation(
-                checkInput,
-                tipPctInput,
+                checkAmount = checkInput,
+                tipPct =  tipPctInput,
                 tipAmount = tipAmount,
                 grandTotal = grandTotal
         )
