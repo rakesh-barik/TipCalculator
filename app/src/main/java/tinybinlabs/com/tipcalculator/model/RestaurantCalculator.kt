@@ -1,9 +1,10 @@
 package tinybinlabs.com.tipcalculator.model
 
+import android.arch.lifecycle.LiveData
 import android.util.Log
 import java.math.RoundingMode
 
-class RestaurantCalculator {
+class RestaurantCalculator(val repository: TipCalculationRepository = TipCalculationRepository()) {
     fun calculateTip(checkInput: Double, tipPctInput: Int): TipCalculation {
         val tipAmount = (checkInput * (tipPctInput.toDouble() / 100.0))
                 .toBigDecimal()
@@ -18,5 +19,17 @@ class RestaurantCalculator {
                 tipAmount = tipAmount,
                 grandTotal = grandTotal
         )
+    }
+
+    fun saveTipCalculation(tipCalculation: TipCalculation){
+        repository.saveTipCalculation(tipCalculation)
+    }
+
+    fun loadTipCalculationByName(locationName: String) : TipCalculation?{
+        return repository.loadTipCalculationByName(locationName)
+    }
+
+    fun loadSavedTipCalculations(): LiveData<List<TipCalculation>>{
+        return repository.loadSavedTipCalculations()
     }
 }
